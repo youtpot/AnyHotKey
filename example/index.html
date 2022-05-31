@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>compositeKey example</title>
+    <script type="text/javascript" src="https://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../dist/compositeKey.min.js"></script>
+
+    <style>
+        body{
+            padding: 20px 50px;
+
+        }
+        input{
+            display: block;
+            margin: 0;
+            width: 500px;
+            height: 30px;
+        }
+        #inputOnKey{
+            font-size: 16px;
+            color: #aaaaaa;
+        }
+
+        span{
+            font-size: 11px;
+            color: #aaaaaa;
+        }
+
+        #documentOnKey{
+            position: absolute;
+            left: 60px;
+            top: 26%;
+            font-size: 60px;
+            color: #aaaaaa;
+        }
+
+    </style>
+</head>
+<body>
+
+    <p>我的键代码是什么： <span>What's my keycode:</span></p>
+    <input type="text">
+    <p id="inputOnKey">Press ( Enter / Ctrl+Enter ) in Input</p>
+
+    <p id="documentOnKey">Press ( 1 / Shift+1 ) in Document</p>
+
+</body>
+    <script type="text/javascript">
+        $("input").submitWithCtrl({//绑定input
+                onKey: function() {
+                    $("#inputOnKey").html("input onKey 主按键被按下");
+                },
+                onCompositeKey: function() {
+                    $("#inputOnKey").html("input onCompositeKey 组合键被按下");
+                }});
+
+
+        $(document).submitWithCtrl({//绑定input
+            key:49,
+            compositeKey: 16,
+            interval:250,
+            onKey: function() {
+                $("#documentOnKey").text("document onKey 主按键被按下");
+            },
+            onCompositeKey: function() {
+                $("#documentOnKey").text("document onCompositeKey 组合键被按下");
+            }});
+
+
+
+        //for example
+        $(document).keydown(function(event){
+            $("input").val(event.keyCode);
+            console.log(event.keyCode);
+
+        });
+    </script>
+</html>
