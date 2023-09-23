@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>compositeKey example</title>
-    <script type="text/javascript" src="https://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" src="../dist/compositeKey.min.js"></script>
+    <title>combinationKey example</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="../dist/AnyCombinationKeys.min.js"></script>
 
     <style>
         body{
@@ -27,8 +27,8 @@
         #documentOnKey{
             position: absolute;
             left: 60px;
-            top: 26%;
-            font-size: 60px;
+            top: 20%;
+            font-size: 40px;
             color: #aaaaaa;
         }
 
@@ -36,7 +36,7 @@
 </head>
 <body>
 
-    <p>我的键代码是什么： <span>What's my keycode:</span></p>
+    <p>What's my keycode:</p>
     <input type="text">
     <p id="inputOnKey">Press ( Enter / Ctrl+Enter ) in Input</p>
 
@@ -44,30 +44,30 @@
 
 </body>
     <script type="text/javascript">
-        $("input").submitWithCtrl({//绑定input
+        $("input").anyCombinationKeys({//绑定input
                 onKey: function() {
-                    $("#inputOnKey").html("input onKey 主按键被按下");
+                    $("#inputOnKey").html("input onKey");
                 },
-                onCompositeKey: function() {
-                    $("#inputOnKey").html("input onCompositeKey 组合键被按下");
+                onCombinationKey: function() {
+                    $("#inputOnKey").html("input onCombinationKey");
                 }});
 
 
-        $(document).submitWithCtrl({//绑定input
+        $(document).anyCombinationKeys({//绑定document
             key:49,
-            compositeKey: 16,
+            combinationKey: 16,
             interval:250,
             onKey: function() {
-                $("#documentOnKey").text("document onKey 主按键被按下");
+                $("#documentOnKey").text("document onKey");
             },
-            onCompositeKey: function() {
-                $("#documentOnKey").text("document onCompositeKey 组合键被按下");
+            onCombinationKey: function() {
+                $("#documentOnKey").text("document onCombinationKey");
             }});
 
 
 
         //for example
-        $(document).keydown(function(event){
+        $(document).on("keydown", function(event){
             $("input").val(event.keyCode);
             console.log(event.keyCode);
 

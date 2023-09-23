@@ -1,33 +1,28 @@
-# compositeKey
+# 任意组合键 AnyCombinationKeys
 
-![Animation1.gif](./assets/Animation.gif)
-
-↑GIF https://i.postimg.cc/SRxFTWf1/composite-Key.gif
-
-
+![Animation.gif](Animation.gif)
 
 ---
 
 
-
-绑定元素按下Enter或按下Ctrl+Enter的事件，或者绑定任意两个按键
+可以绑定"任意"两个按键，作为组合键。
 
 *依赖Jquery*
 
-Bind DOM Press enter or press enter with ctrl,or bind any other two keys
+"Any two keys" can be bound as a key combination.
 
 *require jquery*
 
-*本插件没有使用计时器，转而使用了一种奇怪的方法.
+---
 
 ## Get Started
 
 ```
 <!-- include jQuery -->
-<script type="text/javascript" src="https://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
-<!-- include compositeKey.js-->
-<script type="text/javascript" src="/dist/compositeKey.js"></script>
+<!-- include AnyCombinationKeys.js-->
+<script src="../dist/AnyCombinationKeys.min.js"></script>
 ```
 
 ## Usage
@@ -35,20 +30,20 @@ Bind DOM Press enter or press enter with ctrl,or bind any other two keys
 HTML
 
 ```
-<input type="text">
+<input id="input" type="text">
 ```
 
-JS(所有可选参数)
+JavaScript
 
 ```
-$("input").submitWithCtrl({      //绑定元素，$(document)为绑定全局
-  key:13,                        //主热键，键代码。默认：13（回车Enter键）
-  compositeKey: 17,              //副热键，键代码。默认：17（Ctrl键）
-  interval:250,                  //副键按下后延迟多少ms后失效。默认：250
-  onKey: function() {            //回调，当主按键被按下。默认：空
-    console.log("onKey 主按键被按下");
+$("#input").anyCombinationKeys({   //绑定元素，$(document)为绑定全局
+  key:13,                         //绑定主按键，键代码。默认：13(Enter键)
+  compositeKey: 17,               //绑定副按键，键代码。默认：17(Ctrl键)
+  interval:250,                   //主副按键之间的最大时间间隔(ms)。默认：250ms
+  onKey: function() {             //主按键按下触发的函数。
+    console.log("onKey");
   },
-  onCompositeKey: function() {   //回调，当主、副按键一起被按下。默认：空
-    console.log("onCompositeKey 组合键被按下");
+  onCompositeKey: function() {    //组合键按下触发的函数。
+    console.log("onCompositeKey");
   }});
 ```
