@@ -4,50 +4,50 @@
  * MIT License
  *
  * @author youtpot
- * @version 2023-9-24
+ * @version 2023-10-24
  * @link https://github.com/youtpot/AnyCombinationKeys
  */
 
-
-
-; (function($) {
-    /*!
-     * 绑定元素按下任意两个键所触发的函数（默认：Ctrl+Enter）
-     * Function triggered by pressing any two keys on the binding element (default: Ctrl+Enter)
-     *
-     * @param {object} options key/combinationKey/onKey/onCombinationKey/interval
+; (function() {
+    /**
+     * 监听任意两个按键并触发回调函数（默认：Ctrl+Enter）
+     * Listens to any two keys and trigger the callback function (default: Ctrl+Enter)
+     * @param {HTMLElement} element - 监听的 DOM 元素
+     * @param {object} [options] - 配置选项
+     * @param {number} [options.key] - 绑定主按键的键代码，默认为 13（Enter 键）
+     * @param {number} [options.combinationKey] - 绑定副按键的键代码，默认为 17（Ctrl 键）
+     * @param {function} [options.onKey] - 主按键按下时触发的回调函数
+     * @param {function} [options.onCombinationKey] - 组合键按下时触发的回调函数
+     * @param {number} [options.interval] - 主副按键按下的最大时间间隔（毫秒），默认为 250ms
      */
-    $.fn.anyCombinationKeys = function(options) {
+    function anyCombinationKeys(element, options) {
         let defaults = {
-            key:13,//绑定主按键，键代码。默认：13(Enter键)
-            combinationKey: 17,//绑定副按键，键代码。默认：17(Ctrl键)
-            onKey: function() {},//主按键按下触发的函数。
-            onCombinationKey: function() {},//组合键按下触发的函数。
-            interval:250,//主副按键之间的最大时间间隔(ms)。默认：250ms
+            key: 13,
+            combinationKey: 17,
+            onKey: function() {},
+            onCombinationKey: function() {},
+            interval: 250
         };
-        let opt = $.extend({},defaults, options);
+
+        let opt = Object.assign({}, defaults, options);
         let preKey = ["", 0];
 
-        this.each(function(){
-            $(this).on("keydown", function(event){
-                if(event.keyCode === opt.key){
-                    if(event.preventDefault){
-                        event.preventDefault();
-                    }else{
-                        event.returnValue=false;}
-                }
+        element.addEventListener("keydown", function(event) {
+            if (event.keyCode === opt.key) {
+                event.preventDefault ? event.preventDefault() : (event.returnValue = false);
+            }
 
-                if(event.keyCode === opt.key && preKey[0] === opt.combinationKey && preKey[1] + opt.interval >= new Date().getTime()){
-                    opt.onCombinationKey(this);
-                }else if(event.keyCode === opt.key){
-                    opt.onKey(this);
-                }
+            if (event.keyCode === opt.key && preKey[0] === opt.combinationKey && preKey[1] + opt.interval >= new Date().getTime()) {
+                opt.onCombinationKey(this);
+            } else if (event.keyCode === opt.key) {
+                opt.onKey(this);
+            }
 
-                preKey[0] = event.keyCode;
-                preKey[1] = new Date().getTime();
-
-            });
+            preKey[0] = event.keyCode;
+            preKey[1] = new Date().getTime();
         });
     }
 
-})(jQuery);
+    window.anyCombinationKeys = anyCombinationKeys;
+
+})();

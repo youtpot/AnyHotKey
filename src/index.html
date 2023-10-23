@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>combinationKey example</title>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="../dist/AnyCombinationKeys.min.js"></script>
 
     <style>
@@ -39,38 +38,31 @@
     <p>What's my keycode:</p>
     <input type="text">
     <p id="inputOnKey">Press ( Enter / Ctrl+Enter ) in Input</p>
-
     <p id="documentOnKey">Press ( 1 / Shift+1 ) in Document</p>
 
 </body>
     <script type="text/javascript">
-        $("input").anyCombinationKeys({//绑定input
-                onKey: function() {
-                    $("#inputOnKey").html("input onKey");
-                },
-                onCombinationKey: function() {
-                    $("#inputOnKey").html("input onCombinationKey");
-                }});
-
-
-        $(document).anyCombinationKeys({//绑定document
-            key:49,
-            combinationKey: 16,
-            interval:250,
+        const inputElement = document.querySelector('input');
+        anyCombinationKeys(inputElement, {
             onKey: function() {
-                $("#documentOnKey").text("document onKey");
+                document.querySelector('#inputOnKey').textContent = 'input onKey';
             },
             onCombinationKey: function() {
-                $("#documentOnKey").text("document onCombinationKey");
-            }});
-
-
-
-        //for example
-        $(document).on("keydown", function(event){
-            $("input").val(event.keyCode);
-            console.log(event.keyCode);
-
+                document.querySelector('#inputOnKey').textContent = 'input onCombinationKey';
+            }
         });
+
+        anyCombinationKeys(document, {
+            interval: 250,
+            key: 49,
+            combinationKey: 16,
+            onKey: function() {
+                document.querySelector('#documentOnKey').textContent = 'document onKey';
+            },
+            onCombinationKey: function() {
+                document.querySelector('#documentOnKey').textContent = 'document onCombinationKey';
+            }
+        });
+
     </script>
 </html>
