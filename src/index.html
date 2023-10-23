@@ -36,6 +36,7 @@
 <body>
 
     <p>What's my keycode:</p>
+    <p id="keyCode"></p>
     <input type="text">
     <p id="inputOnKey">Press ( Enter / Ctrl+Enter ) in Input</p>
     <p id="documentOnKey">Press ( 1 / Shift+1 ) in Document</p>
@@ -64,5 +65,12 @@
             }
         });
 
+
+        //for example
+        document.addEventListener("keydown", function(event) {
+            const keyCodeElement = document.querySelector('#keyCode');
+            keyCodeElement.textContent = String(event.keyCode);
+            console.log(String(event.keyCode));
+        });
     </script>
 </html>

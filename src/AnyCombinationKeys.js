@@ -33,7 +33,7 @@
         let preKey = ["", 0];
 
         element.addEventListener("keydown", function(event) {
-            if (event.keyCode === opt.key) {
+            if (event.keyCode === opt.key && event.keyCode === 13) {
                 event.preventDefault ? event.preventDefault() : (event.returnValue = false);
             }
 
