@@ -48,7 +48,7 @@ const inputElement = document.querySelector('input');
 ```
 
 Example
-[index.html](src%2Findex.html)
+[demo.html](demo%2Fdemo.html)
 
 ### OR
 
@@ -80,4 +80,4 @@ const inputElement = document.querySelector('input');
 ```
 
 Example
-[index_manually.html](src%2Findex_manually.html)
+[demo_manually.html](demo%2Fdemo_manually.html)
