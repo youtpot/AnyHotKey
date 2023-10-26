@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AnyHotKey example</title>
+    <script src="../dist/AnyHotKey.min.js"></script>
+    <style>
+        body{
+            padding: 20px 50px;
+        }
+        #inputOnKey{
+            margin-top: 60px;
+            font-size: 16px;
+            color: #aaa;
+        }
+        input{
+            width: 500px;
+            height: 30px;
+        }
+        #documentOnKey{
+            margin-top: 60px;
+            font-size: 40px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <p>What's my keycode:</p>
+    <p id="keyCode"></p>
+    <hr/>
+    <p id="inputOnKey">Press ( Enter / Ctrl+Enter ) in Input</p>
+    <input type="text">
+    <p id="documentOnKey">Press ( 1 / z+1 ) in Document</p>
+</body>
+
+<script type="text/javascript">
+    const inputElement = document.querySelector('input');
+    AnyHotKey(inputElement, {
+        key: 13,
+        subKey: 17,
+        onKey: function() {
+            document.querySelector('#inputOnKey').textContent = 'input onKey';
+        },
+        onHotkey: function() {
+            document.querySelector('#inputOnKey').textContent = 'input onHotkey';
+        }
+    });
+
+    AnyHotKey(document, {
+        interval: 300,
+        key: 49,
+        subKey: 90,
+        onKey: function() {
+            document.querySelector('#documentOnKey').textContent = 'document onKey';
+        },
+        onHotkey: function() {
+            document.querySelector('#documentOnKey').textContent = 'document onHotkey';
+        }
+    });
+
+
+    //for example
+    document.addEventListener("keydown", function(event) {
+        const keyCodeElement = document.querySelector('#keyCode');
+        keyCodeElement.textContent = String(event.keyCode);
+    });
+</script>
+</html>

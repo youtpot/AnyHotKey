@@ -1,0 +1,28 @@
+{
+  "name": "anyhotkey",
+  "title": "anyhotkey",
+  "version": "1.0.3",
+  "description": "将\"任意\"两个按键作为热键，包括非功能键；Use 'any' two keys as hotkey, including non-function keys.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/youtpot/AnyHotKey.git"
+  },
+  "keywords": [
+    "javascript",
+    "hotkey",
+    "key-combos"
+  ],
+  "files": [
+    "dist/"
+  ],
+  "main": "dist/AnyHotKey.min.js",
+  "author": {
+    "name": "youtpot",
+    "url": "youtpot.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/youtpot/AnyHotKey/issues"
+  },
+  "homepage": "https://github.com/youtpot/AnyHotKey#readme"
+}

@@ -2,75 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>combinationKey example</title>
-    <script src="../dist/AnyCombinationKeys.min.js"></script>
-
+    <title>AnyHotKey example</title>
+    <script src="../dist/index.js"></script>
     <style>
         body{
             padding: 20px 50px;
         }
+        #inputOnKey{
+            margin-top: 60px;
+            font-size: 16px;
+            color: #aaa;
+        }
         input{
-            display: block;
-            margin: 0;
             width: 500px;
             height: 30px;
         }
-        #inputOnKey{
-            font-size: 16px;
-            color: #aaaaaa;
-        }
-        span{
-            font-size: 11px;
-            color: #aaaaaa;
-        }
         #documentOnKey{
-            position: absolute;
-            left: 60px;
-            top: 20%;
+            margin-top: 60px;
             font-size: 40px;
-            color: #aaaaaa;
+            color: #aaa;
         }
-
     </style>
 </head>
 <body>
-
     <p>What's my keycode:</p>
     <p id="keyCode"></p>
-    <input type="text">
+    <hr/>
     <p id="inputOnKey">Press ( Enter / Ctrl+Enter ) in Input</p>
-    <p id="documentOnKey">Press ( 1 / Shift+1 ) in Document</p>
-
+    <input type="text">
+    <p id="documentOnKey">Press ( 1 / z+1 ) in Document</p>
 </body>
-    <script type="text/javascript">
-        const inputElement = document.querySelector('input');
-        anyCombinationKeys(inputElement, {
-            onKey: function() {
-                document.querySelector('#inputOnKey').textContent = 'input onKey';
-            },
-            onCombinationKey: function() {
-                document.querySelector('#inputOnKey').textContent = 'input onCombinationKey';
-            }
-        });
-
-        anyCombinationKeys(document, {
-            interval: 250,
-            key: 49,
-            combinationKey: 16,
-            onKey: function() {
-                document.querySelector('#documentOnKey').textContent = 'document onKey';
-            },
-            onCombinationKey: function() {
-                document.querySelector('#documentOnKey').textContent = 'document onCombinationKey';
-            }
-        });
 
 
-        //for example
-        document.addEventListener("keydown", function(event) {
-            const keyCodeElement = document.querySelector('#keyCode');
-            keyCodeElement.textContent = String(event.keyCode);
-            console.log(String(event.keyCode));
-        });
-    </script>
+
 </html>
